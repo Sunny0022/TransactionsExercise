@@ -1,9 +1,16 @@
 QUESTION
 
+consider the following schema:
+create database bank
+
+tables:
+users(id, name, email, account_no)
+accounts(id, account_no, balance)
 
 ANSWER
 
----- CREATE DATABASE BANK-----------------
+---- ---------------------------------CREATE DATABASE BANK----------------------------------------------------
+
 mysql> create database bank;
 Query OK, 1 row affected (0.01 sec)
 
@@ -37,7 +44,7 @@ Database changed
 mysql> show tables;
 Empty set (0.01 sec)
 
----------CREATE TABLE USERS---------------------------------
+-------------------------------CREATE TABLE USERS---------------------------------------------------------
 
 mysql> create table users(
     -> id int not null,
@@ -94,7 +101,8 @@ mysql> select * from users;
 +----+-------+------------------+------------+
 7 rows in set (0.00 sec)
 
------------CREATE TABLE ACCOUNTS-----------------
+-----------------------------CREATE TABLE ACCOUNTS--------------------------------------------------------------------------
+
 mysql> create table accounts(
     -> id int not null,
     -> account_no int not null,
