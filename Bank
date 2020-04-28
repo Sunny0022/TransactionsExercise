@@ -11,83 +11,34 @@ ANSWER
 
 ---- ---------------------------------CREATE DATABASE BANK----------------------------------------------------
 
-mysql> create database bank;
-Query OK, 1 row affected (0.01 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| bank               |
-| biography          |
-| classdb            |
-| employee           |
-| explainmethod      |
-| information_schema |
-| library            |
-| library_bak        |
-| multibranchlibrary |
-| mysql              |
-| performance_schema |
-| sakila             |
-| sandwitch          |
-| sandwitch_bak      |
-| sys                |
-| testdb             |
-| testing            |
-| world              |
-+--------------------+
-18 rows in set (0.00 sec)
-
-mysql> use bank;
-Database changed
-mysql> show tables;
-Empty set (0.01 sec)
+Create database bank;
+use bank;
+show tables;
 
 -------------------------------CREATE TABLE USERS---------------------------------------------------------
 
-mysql> create table users(
-    -> id int not null,
-    -> name text,
-    -> email varchar(30),
-    -> account_no int not null,
-    -> primary key(account_no)
-    -> );
-Query OK, 0 rows affected (0.09 sec)
+create table users(
+id int not null,
+name text,
+email varchar(30),
+account_no int not null,
+primary key(account_no)
+);
+insert into users(id,name,email,account_no) values(1,'Billy','billy1@gmail.com',1001);
 
-mysql> desc users;
-+------------+-------------+------+-----+---------+-------+
-| Field      | Type        | Null | Key | Default | Extra |
-+------------+-------------+------+-----+---------+-------+
-| id         | int         | NO   |     | NULL    |       |
-| name       | text        | YES  |     | NULL    |       |
-| email      | varchar(30) | YES  |     | NULL    |       |
-| account_no | int         | NO   | PRI | NULL    |       |
-+------------+-------------+------+-----+---------+-------+
-4 rows in set (0.01 sec)
+insert into users(id,name,email,account_no) values(2,'Sammy','sammy1@gmail.com',1003);
 
-mysql> insert into users(id,name,email,account_no) values(1,'Billy','billy1@gmail.com',1001);
-Query OK, 1 row affected (0.01 sec)
+insert into users(id,name,email,account_no) values(3,'Bob','bob1@gmail.com',1005);
 
-mysql> insert into users(id,name,email,account_no) values(2,'Sammy','sammy1@gmail.com',1003);
-Query OK, 1 row affected (0.01 sec)
+insert into users(id,name,email,account_no) values(4,'userA','user1@gmail.com',1010);
 
-mysql> insert into users(id,name,email,account_no) values(3,'Bob','bob1@gmail.com',1005);
-Query OK, 1 row affected (0.02 sec)
+insert into users(id,name,email,account_no) values(5,'userB','user2@gmail.com',1011);
 
-mysql> insert into users(id,name,email,account_no) values(4,'userA','user1@gmail.com',1010);
-Query OK, 1 row affected (0.01 sec)
+insert into users(id,name,email,account_no) values(6,'Tom','tom1@gmail.com',1017);
 
-mysql> insert into users(id,name,email,account_no) values(5,'userB','user2@gmail.com',1011);
-Query OK, 1 row affected (0.01 sec)
+insert into users(id,name,email,account_no) values(7,'Jerry','jerry1@gmail.com',1019);
 
-mysql> insert into users(id,name,email,account_no) values(6,'Tom','tom1@gmail.com',1017);
-Query OK, 1 row affected (0.01 sec)
-
-mysql> insert into users(id,name,email,account_no) values(7,'Jerry','jerry1@gmail.com',1019);
-Query OK, 1 row affected (0.01 sec)
-
-mysql> select * from users;
+select * from users;
 +----+-------+------------------+------------+
 | id | name  | email            | account_no |
 +----+-------+------------------+------------+
@@ -103,44 +54,26 @@ mysql> select * from users;
 
 -----------------------------CREATE TABLE ACCOUNTS--------------------------------------------------------------------------
 
-mysql> create table accounts(
-    -> id int not null,
-    -> account_no int not null,
-    -> balance float,
-    -> foreign key(account_no) references users(account_no)
-    -> );
-Query OK, 0 rows affected (0.07 sec)
+create table accounts(
+id int not null,
+account_no int not null,
+balance float CHECK(balance > 0),
+foreign key(account_no) references users(account_no)
+);
 
-mysql> desc accounts;
-+------------+-------+------+-----+---------+-------+
-| Field      | Type  | Null | Key | Default | Extra |
-+------------+-------+------+-----+---------+-------+
-| id         | int   | NO   |     | NULL    |       |
-| account_no | int   | NO   | MUL | NULL    |       |
-| balance    | float | YES  |     | NULL    |       |
-+------------+-------+------+-----+---------+-------+
-3 rows in set (0.03 sec)
+insert into accounts(id,account_no,balance) values(1,1001,2000.0);
 
-mysql> insert into accounts(id,account_no,balance) values(1,1001,2000.0);
-Query OK, 1 row affected (0.01 sec)
+insert into accounts(id,account_no,balance) values(2,1005,1500.0);
 
-mysql> insert into accounts(id,account_no,balance) values(2,1005,1500.0);
-Query OK, 1 row affected (0.01 sec)
+insert into accounts(id,account_no,balance) values(3,1003,1000.0);
 
-mysql> insert into accounts(id,account_no,balance) values(3,1003,1000.0);
-Query OK, 1 row affected (0.01 sec)
+insert into accounts(id,account_no,balance) values(4,1011,3000.0);
 
-mysql> insert into accounts(id,account_no,balance) values(4,1011,3000.0);
-Query OK, 1 row affected (0.01 sec)
+insert into accounts(id,account_no,balance) values(5,1017,1000.0);
 
-mysql> insert into accounts(id,account_no,balance) values(5,1017,1000.0);
-Query OK, 1 row affected (0.02 sec)
+insert into accounts(id,account_no,balance) values(6,1019,2500.0);
 
-mysql> insert into accounts(id,account_no,balance) values(6,1019,2500.0);
-Query OK, 1 row affected (0.01 sec)
-
-mysql> insert into accounts(id,account_no,balance) values(7,1010,500.0);
-Query OK, 1 row affected (0.01 sec)
+insert into accounts(id,account_no,balance) values(7,1010,500.0);
 
 QUESTIONS
 
@@ -150,7 +83,7 @@ ANSWERS
 
 i)
 
-mysql> select * from accounts;
+select * from accounts;
 +----+------------+---------+
 | id | account_no | balance |
 +----+------------+---------+
@@ -164,18 +97,12 @@ mysql> select * from accounts;
 +----+------------+---------+
 7 rows in set (0.00 sec)
 
+begin;
+savepoint upd1;
+update accounts set balance = balance + 1000 where account_no = 1010;
+commit;
 
-mysql> begin;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> savepoint upd1;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> update accounts set balance = balance + 1000 where account_no = 1010;
-Query OK, 1 row affected (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select * from accounts;
+select * from accounts;
 +----+------------+---------+
 | id | account_no | balance |
 +----+------------+---------+
@@ -189,22 +116,6 @@ mysql> select * from accounts;
 +----+------------+---------+
 7 rows in set (0.00 sec)
 
-mysql> commit;
-Query OK, 0 rows affected (0.01 sec)
-
-mysql> select * from accounts;
-+----+------------+---------+
-| id | account_no | balance |
-+----+------------+---------+
-|  1 |       1001 |    2000 |
-|  2 |       1005 |    1500 |
-|  3 |       1003 |    1000 |
-|  4 |       1011 |    3000 |
-|  5 |       1017 |    1000 |
-|  6 |       1019 |    2500 |
-|  7 |       1010 |    1500 |
-+----+------------+---------+
-7 rows in set (0.00 sec)
 QUESTION
 
 ii) userA is withdrawing 500 Rs
@@ -212,34 +123,12 @@ ii) userA is withdrawing 500 Rs
 ANSWER
 
 ii)
-mysql> begin;
-Query OK, 0 rows affected (0.00 sec)
+begin;
+savepoint upd2;
+update accounts set balance = balance - 500 where account_no = 1010;
+commit;
 
-mysql> savepoint upd2;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> update accounts set balance = balance - 500 where account_no = 1010;
-Query OK, 1 row affected (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select * from accounts;
-+----+------------+---------+
-| id | account_no | balance |
-+----+------------+---------+
-|  1 |       1001 |    2000 |
-|  2 |       1005 |    1500 |
-|  3 |       1003 |    1000 |
-|  4 |       1011 |    3000 |
-|  5 |       1017 |    1000 |
-|  6 |       1019 |    2500 |
-|  7 |       1010 |    1000 |
-+----+------------+---------+
-7 rows in set (0.00 sec)
-
-mysql> commit;
-Query OK, 0 rows affected (0.01 sec)
-
-mysql> select * from accounts;
+select * from accounts;
 +----+------------+---------+
 | id | account_no | balance |
 +----+------------+---------+
@@ -261,42 +150,14 @@ ANSWER
 
 iii)
 
+begin;
+savepoint inst1;
+update accounts set balance = balance - 200 where account_no = 1010;
+savepoint inst2;
+update accounts set balance = balance + 200 where account_no = 1011;
+commit;
 
-mysql> begin;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> savepoint inst1;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> update accounts set balance = balance - 200 where account_no = 1010;
-Query OK, 1 row affected (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> savepoint inst2;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> update accounts set balance = balance + 200 where account_no = 1011;
-Query OK, 1 row affected (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select * from accounts;
-+----+------------+---------+
-| id | account_no | balance |
-+----+------------+---------+
-|  1 |       1001 |    2000 |
-|  2 |       1005 |    1500 |
-|  3 |       1003 |    1000 |
-|  4 |       1011 |    3200 |
-|  5 |       1017 |    1000 |
-|  6 |       1019 |    2500 |
-|  7 |       1010 |     800 |
-+----+------------+---------+
-7 rows in set (0.00 sec)
-
-mysql> commit;
-Query OK, 0 rows affected (0.01 sec)
-
-mysql> select * from accounts;
+select * from accounts;
 +----+------------+---------+
 | id | account_no | balance |
 +----+------------+---------+
